@@ -1,24 +1,27 @@
-');<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI로 포켓몬 찾기 ⚡</title>
+    <title>MBTI로 포켓몬 찾기 🌊</title>
     
     <style>
         :root {
-            --bg-cream: #FFFDF0;
+            --bg-sky-main: #E0F2FE;
+            --bg-sky-gradient: linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 100%);
             --bg-card: #FFFFFF;
-            --yellow-light: #FFF3BF;
-            --yellow-mid: #FFE066;
-            --yellow-main: #FFD43B;
-            --orange-main: #FF914D;
-            --orange-hover: #F19E38;
-            --text-dark: #2C3E50;
-            --text-muted: #6C7A89;
-            --border-soft: #FFE69C;
-            --shadow-soft: 0 12px 28px rgba(255, 200, 50, 0.2);
-            --shadow-btn: 0 4px 12px rgba(241, 158, 56, 0.25);
+            --blue-light: #F0F9FF;
+            --blue-mid: #7DD3FC;
+            --blue-main: #38BDF8;
+            --blue-dark: #0284C7;
+            --blue-deep: #0369A1;
+            --accent-orange: #FF8A3D;
+            --accent-orange-hover: #E06C20;
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            --border-soft: #BAE6FD;
+            --shadow-card: 0 16px 32px rgba(56, 189, 248, 0.18);
+            --shadow-btn: 0 4px 14px rgba(3, 105, 161, 0.2);
             --radius-lg: 28px;
             --radius-md: 18px;
             --radius-sm: 12px;
@@ -28,53 +31,53 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: var(--bg-cream);
-            color: var(--text-dark);
+            background: var(--bg-sky-gradient);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 24px 16px;
+            padding: 28px 16px;
             line-height: 1.6;
         }
 
         .container {
             width: 100%;
-            max-width: 680px;
+            max-width: 660px;
             margin: 0 auto;
         }
 
         /* HEADER */
         header {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .header-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background-color: var(--yellow-mid);
-            color: #5C4300;
+            background-color: #FFFFFF;
+            color: var(--blue-deep);
             font-weight: 800;
             font-size: 15px;
             padding: 6px 18px;
             border-radius: 30px;
             margin-bottom: 12px;
-            border: 2px solid var(--yellow-main);
-            box-shadow: 0 3px 10px rgba(255, 212, 59, 0.3);
+            border: 2px solid var(--blue-mid);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
         }
 
         h1 {
             font-size: 34px;
             font-weight: 900;
-            color: #2D3748;
+            color: #034694;
             letter-spacing: -0.5px;
             margin-bottom: 8px;
             word-break: keep-all;
@@ -82,19 +85,19 @@
 
         .subtitle {
             font-size: 18px;
-            color: var(--text-muted);
+            color: var(--blue-deep);
             font-weight: 600;
             word-break: keep-all;
         }
 
-        /* CARD VIEW CONTAINER */
+        /* CARD CONTAINER */
         .view-card {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
             padding: 32px 24px;
-            border: 4px solid var(--border-soft);
-            box-shadow: var(--shadow-soft);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid var(--border-soft);
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
         }
 
         /* GRID VIEW (SELECTION) */
@@ -102,8 +105,8 @@
             text-align: center;
             font-size: 20px;
             font-weight: 800;
-            margin-bottom: 24px;
-            color: #334155;
+            margin-bottom: 22px;
+            color: var(--blue-deep);
         }
 
         .mbti-grid {
@@ -124,29 +127,28 @@
         }
 
         .mbti-btn {
-            background: #FFFDF5;
-            border: 2px solid var(--yellow-main);
+            background: var(--blue-light);
+            border: 2px solid var(--blue-mid);
             border-radius: var(--radius-md);
             padding: 16px 8px;
             font-size: 19px;
             font-weight: 900;
-            color: #334155;
+            color: var(--blue-deep);
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            box-shadow: 0 4px 8px rgba(255, 212, 59, 0.15);
+            box-shadow: 0 4px 8px rgba(125, 211, 252, 0.25);
         }
 
         .mbti-btn:hover, .mbti-btn:focus {
-            background: var(--yellow-main);
-            border-color: var(--orange-main);
-            color: #000000;
+            background: var(--blue-main);
+            border-color: var(--blue-dark);
+            color: #FFFFFF;
             transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 8px 16px rgba(255, 145, 77, 0.3);
+            box-shadow: 0 8px 18px rgba(56, 189, 248, 0.4);
             outline: none;
         }
 
@@ -166,41 +168,41 @@
         }
 
         @keyframes popIn {
-            from { opacity: 0; transform: scale(0.92) translateY(10px); }
+            from { opacity: 0; transform: scale(0.92) translateY(12px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .user-mbti-badge {
             display: inline-block;
-            background: var(--yellow-light);
-            color: #854D0E;
+            background: var(--blue-light);
+            color: var(--blue-dark);
             font-size: 17px;
             font-weight: 800;
             padding: 8px 22px;
             border-radius: 30px;
             margin-bottom: 16px;
-            border: 2px solid var(--yellow-main);
+            border: 2px solid var(--blue-mid);
         }
 
         .pokemon-avatar {
             width: 150px;
             height: 150px;
             margin: 0 auto 20px;
-            background: radial-gradient(circle, #FFFBEB 0%, #FDE68A 100%);
+            background: radial-gradient(circle, #FFFFFF 0%, #E0F2FE 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 80px;
-            border: 5px solid var(--yellow-main);
-            box-shadow: 0 10px 25px rgba(255, 212, 59, 0.4);
+            border: 5px solid var(--blue-main);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.35);
             user-select: none;
         }
 
         .pokemon-name-title {
             font-size: 30px;
             font-weight: 900;
-            color: #1E293B;
+            color: var(--text-main);
             margin-bottom: 12px;
         }
 
@@ -208,7 +210,7 @@
             display: flex;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
             flex-wrap: wrap;
         }
 
@@ -222,23 +224,23 @@
         }
 
         .tag.highlight {
-            background: #FFEDD5;
-            color: #C2410C;
-            border: 1px solid #FED7AA;
+            background: #E0F2FE;
+            color: var(--blue-deep);
+            border: 1px solid var(--blue-mid);
         }
 
         .reason-box {
-            background: #FFFDF0;
+            background: var(--blue-light);
             border-radius: var(--radius-md);
             padding: 20px;
             text-align: left;
-            border: 2px dashed var(--yellow-main);
-            margin-bottom: 24px;
+            border: 2px dashed var(--blue-mid);
+            margin-bottom: 22px;
         }
 
         .reason-box h3 {
-            font-size: 16px;
-            color: #9A3412;
+            font-size: 17px;
+            color: var(--blue-deep);
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -250,7 +252,7 @@
             font-size: 16px;
             color: #334155;
             word-break: keep-all;
-            line-height: 1.7;
+            line-height: 1.75;
             font-weight: 600;
         }
 
@@ -289,7 +291,7 @@
         }
 
         .reset-btn {
-            background: linear-gradient(135deg, var(--orange-main) 0%, #FF5252 100%);
+            background: linear-gradient(135deg, var(--accent-orange) 0%, #FF5252 100%);
             color: white;
             border: none;
             width: 100%;
@@ -299,7 +301,7 @@
             border-radius: var(--radius-md);
             cursor: pointer;
             box-shadow: var(--shadow-btn);
-            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .reset-btn:hover {
@@ -313,10 +315,11 @@
 
         footer {
             text-align: center;
-            margin-top: 28px;
+            margin-top: 24px;
             font-size: 14px;
-            color: var(--text-muted);
+            color: var(--blue-deep);
             font-weight: 600;
+            opacity: 0.85;
         }
     </style>
 </head>
@@ -324,7 +327,7 @@
 
     <div class="container">
         <header>
-            <span class="header-badge">⚡ POKÉMON & MBTI</span>
+            <span class="header-badge">🌊 POKÉMON & MBTI</span>
             <h1>MBTI로 포켓몬 찾기</h1>
             <p class="subtitle">나의 성격 유형과 꼭 닮은 운명의 포켓몬은?</p>
         </header>
@@ -334,7 +337,7 @@
             <div id="selectionView">
                 <p class="instruction">본인의 MBTI 유형을 선택하세요!</p>
                 <div class="mbti-grid" id="mbtiGrid">
-                    <!-- JavaScript dynamic rendering -->
+                    <!-- Dynamic rendering via JS -->
                 </div>
             </div>
 
@@ -370,12 +373,11 @@
         </main>
 
         <footer>
-            <p>© MBTI 포켓몬 매칭 | 나만의 포켓몬 찾기</p>
+            <p>© MBTI 포켓몬 매칭 | 하늘색 파스텔 에디션</p>
         </footer>
     </div>
 
     <script>
-        // 16 MBTI Pokemon Mapping Database
         const mbtiPokemonData = {
             "ISTJ": {
                 name: "꼬부기",
@@ -389,7 +391,6 @@
             "ISFJ": {
                 name: "해피너스",
                 emoji: "🩷",
-                type: "노멀",
                 tags: ["#노멀타입", "#헌신적인배려", "#수호천사"],
                 reason: "주변 사람들을 세심하게 챙기고 따뜻한 온정을 베푸는 다정한 배려왕입니다. 타인의 행복을 위해 알을 나누어주며 마음을 치유해주는 해피너스의 온기와 똑 닮아있습니다.",
                 bestMatch: "ESTP",
@@ -498,7 +499,6 @@
             "ESFJ": {
                 name: "다부니",
                 emoji: "🩺",
-                type: "노멀",
                 tags: ["#노멀타입", "#친화력갑", "#핵인싸조력자"],
                 reason: "주변 사람들의 기분을 세심하게 살피고 활력을 불어넣는 친절한 조력자입니다. 남들의 마음을 헤아리고 다정하게 치유해 주는 다부니의 친근한 면모와 꼭 맞아떨어집니다.",
                 bestMatch: "ISTP",
@@ -535,7 +535,6 @@
                 btn.className = 'mbti-btn';
                 btn.onclick = () => selectMBTI(mbti);
                 btn.setAttribute('aria-label', `${mbti} 선택하기`);
-                
                 btn.innerHTML = `<div>${mbti}</div>`;
                 gridContainer.appendChild(btn);
             });
@@ -564,7 +563,7 @@
 
             // Display transition
             document.getElementById('selectionView').style.display = 'none';
-            const resultView = document.getElementById('resultView
+            const resultView = document.getElementById('resultView');
             resultView.classList.add('active');
 
             // Smooth scroll top
@@ -579,7 +578,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // On window startup
+        // Initialize on load
         window.onload = function() {
             initGrid();
         };
